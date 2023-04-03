@@ -1,0 +1,56 @@
+﻿
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/select2/select2.css" rel="stylesheet" />
+<div class="container bg-light">
+    <h3>Create Post</h3>
+</div>
+<div class="container border py-3 my-3">
+    <div class="row">
+        <div class="mb-3 mt-3">
+            <div class="col-md-10">
+                <label class="control-label col-sm-2" for="fieldone">Title:</label>
+                <input id="txtTitle" type="text" class="form-control" placeholder="Enter Title" name="txtTitle">
+            </div>
+        </div>
+        <div class="mb-3 mt-3">
+            <div class="col-md-10">
+                <label class="control-label col-sm-2" for="fieldone">Topics:</label>
+                <select class="form-select" id="ddltopics" style="width:100%" multiple="multiple" required="" data-parsley-trigger="focusout"></select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container border py-3 my-3">
+    <div class="row">
+        <div class="mb-3 mt-3">
+            <div class="col-md-10">
+                <label class="control-label col-sm-2" for="fieldone">Post:</label>
+                <textarea class="form-control" id="txtPost" name="txtPost" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 mt-3">
+            <div class="col-md-5">
+                <button type="button" onclick="CreatePost();" class="btn btn-primary btn-lg">Post </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckfinder/ckfinder.js"></script>
+<script src="~/Areas/Post/JS/CreatePost.js"></script>
+
+<script>CKEDITOR.replace("txtPost");</script>
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+        GetTopics();
+    });
+</script>

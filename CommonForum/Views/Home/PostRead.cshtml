@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "PostRead";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+
+<div class="container border py-3 my-3">
+    <b><p id="Title"></p></b><br />
+    <i class="fa fa-calendar" aria-hidden="true"> </i><a class="calendar" rel="calendar" href="#" title="">15 Mar 2023</a>
+    <i class="fa fa-user fa" aria-hidden="true"> </i><a class="user" rel="user" href="#" title="">Amar Sutar</a>
+    <i class="fa fa-comments fa-fw" aria-hidden="true"> </i><a class="comments" rel="comments" href="#" title=""><span id="spComments"></span></a>
+    <i class="fa fa-eye fa-fw" aria-hidden="true"> </i><a class="eye" rel="eye" href="#" title=""><span id="spView"></span></a>
+</div>
+<div class="container border py-3 my-3">
+    <div class="row">
+
+        <div class="mb-3 mt-3">
+            <div class="col-md-10">
+                <div id="txtContent"></div>
+                <input type="hidden" id="hdnSRNO" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container border py-3 my-3">
+    <h2>Add Comment</h2>
+    <div class="row">
+
+        <div class="mb-3 mt-3">
+            <div class="col-md-10">
+                <textarea class="form-control" id="txtComment" name="txtComment" rows="3"></textarea>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 mt-3">
+            <div class="col-md-10 JustifyLeft">
+                <button type="button" onclick="Postcomment();" class="btn btn-primary btn-lg JustifyLeft">Comment </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 mt-3">
+            <div id="commenttable"></div>
+        </div>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/ReadPost.js"></script>
+<script>
+    var PostID = '';
+
+    $(document).ready(function () {
+        PostID = getParameterByName('id');
+        ReadPost(PostID);
+        GetComment(PostID);
+    });
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+</script>
+
+

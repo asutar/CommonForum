@@ -1,0 +1,27 @@
+﻿@*<link href="~/Content/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<link href="~/Content/datatables.net-bs4/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/datatables.net-bs4/css/jquery-ui.css" rel="stylesheet" />*@
+
+<div class="container border py-3 my-3">
+    <div class="table-responsive">
+        <table id="tblQuestions" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+                <tr class="align-middle">
+                    <td width="100%">Latest Questions  </td>
+                </tr>
+            </thead>
+            <tbody class="js-sweetalert"></tbody>
+        </table>
+    </div>
+
+    <small class="d-block text-end mt-3">
+        <a href="#">All updates</a>
+    </small>
+</div>
+
+@*@section scripts{
+    @Scripts.Render("~/Scripts/Datatable")
+}*@
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+@*<script src="~/Scripts/Quetions.js"></script>*@

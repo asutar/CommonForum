@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "PostDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<link href="~/Content/datatables.net-bs4/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/datatables.net-bs4/css/jquery-ui.css" rel="stylesheet" />
+
+<div class="container mt-3">
+
+    @*<h2>Toggleable Tabs</h2>*@
+    <button type="button" onclick="GetRedirectToPost();" class="btn btn-success"><i class="fa fa-pen text-lg-end"> Post</i></button>
+    <br>
+    <div class="table-responsive">
+        <table id="tblPostDetails" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+                <tr class="align-middle">
+                    <td>Latest Post  </td>
+                </tr>
+            </thead>
+            <tbody class="js-sweetalert"></tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Datatable")
+}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="~/Areas/Post/JS/PostDetails.js"></script>

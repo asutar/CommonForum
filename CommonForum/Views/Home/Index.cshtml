@@ -1,31 +1,79 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="~/Content/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<link href="~/Content/datatables.net-bs4/css/responsive.dataTables.min.css" rel="stylesheet" />
+@*<link href="~/Content/datatables.net-bs4/css/jquery-ui.css" rel="stylesheet" />*@
+
+
+<ul class="nav nav-tabs nav-scroller bg-body" role="tablist">
+    <li class="nav-item">
+        <a id="tab1" class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+    </li>
+    <li class="nav-item">
+        <a id="tab2" class="nav-link" data-bs-toggle="tab" href="#menu1">Questions</a>
+    </li>
+    <li class="nav-item">
+        <a id="tab3" class="nav-link" data-bs-toggle="tab" href="#menu2">Contact Us</a>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div id="home" class="container tab-pane active">
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+            <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
+            <div class="lh-1">
+                <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
+            </div>
+            <div class="lh-1">
+                <button type="button" onclick="GetLogin();" class="btn btn-dark">Ask Question</button>
+            </div>
+        </div>
+        @Html.Partial("_Home")
+    </div>
+    <div id="menu1" class="container tab-pane fade">
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+            <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
+            <div class="lh-1">
+                <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
+            </div>
+            <div class="lh-1">
+                <button type="button" onclick="GetLogin();" class="btn btn-dark">Ask Question</button>
+            </div>
+        </div>
+        @Html.Partial("_Questions")
+    </div>
+    <div id="menu2" class="container tab-pane fade">
+        <br>
+       
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Datatable")
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/Home.js"></script>
+@*<script src="~/Scripts/Quetions.js"></script>*@
+<script>
+   
+    $('a[data-bs-toggle=tab]').click(function () {
+        //alert(this.id);
+        if (this.id == 'tab1') {
+            LoadData();
+        }
+        if (this.id == 'tab2') {
+            LoadQuestionsData();
+        }
+        if (this.id == 'tab3') {
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+        }
+    });
+</script>
+
+
+
