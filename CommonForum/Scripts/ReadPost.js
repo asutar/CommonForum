@@ -64,6 +64,7 @@ function GetComment(Post_id) {
         success: function (result) {
             debugger
             var json = result.data;
+            $('#commenttable').empty();
             //$('#commenttable tr').remove();
             var tr1='';
             //var tr2;

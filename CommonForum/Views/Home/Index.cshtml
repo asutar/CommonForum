@@ -22,32 +22,43 @@
 <!-- Tab panes -->
 <div class="tab-content">
     <div id="home" class="container tab-pane active">
-        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-            <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
-            <div class="lh-1">
-                <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
-            </div>
-            <div class="lh-1">
-                <button type="button" onclick="GetLogin();" class="btn btn-dark">Ask Question</button>
+        <div class="align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+         
+
+            @*<div class="lh-1">
+            <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
+        </div>
+        <div class="lh-1">
+            <button type="button" onclick="GetLogin();" class="btn btn-dark">Ask Question</button>
+        </div>*@
+            <div class="row">
+                <div class="col-md-4">
+                    @*<img class="me-3" src="http://localhost:3026/Content/bootstrap-logo.svg" alt="" width="48" height="38">*@
+                    <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
+                </div>
+                <div class="col-md-4"> </div>
+                <div class="col-md-4 text-end">  <button type="button" onclick="GetLogin();" class="btn btn-dark">Post</button></div>
             </div>
         </div>
+       
         @Html.Partial("_Home")
     </div>
     <div id="menu1" class="container tab-pane fade">
-        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-            <img class="me-3" src="../assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
-            <div class="lh-1">
-                <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
-            </div>
-            <div class="lh-1">
-                <button type="button" onclick="GetLogin();" class="btn btn-dark">Ask Question</button>
+        <div class="align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+            <div class="row">
+                <div class="col-md-4">
+                    @*<img class="me-3" src="http://localhost:3026/Content/bootstrap-logo.svg" alt="" width="48" height="38">*@
+                    <h1 class="h6 mb-0 text-white lh-1">New Additions</h1>
+                </div>
+                <div class="col-md-4"> </div>
+                <div class="col-md-4 text-end">  <button type="button" onclick="GetLogin();" class="btn btn-dark">Ask Question</button></div>
             </div>
         </div>
         @Html.Partial("_Questions")
     </div>
     <div id="menu2" class="container tab-pane fade">
         <br>
-       
+
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
     </div>
 </div>
@@ -55,14 +66,11 @@
 @section scripts{
     @Scripts.Render("~/Scripts/Datatable")
 }
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="~/Scripts/Home.js"></script>
-@*<script src="~/Scripts/Quetions.js"></script>*@
 <script>
-   
+
     $('a[data-bs-toggle=tab]').click(function () {
-        //alert(this.id);
+
         if (this.id == 'tab1') {
             LoadData();
         }

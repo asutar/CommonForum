@@ -178,7 +178,9 @@
     <Compile Include="Models\DTOUserLoginReturnGet.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Signup.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ValidateUserEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +294,8 @@
     <Content Include="Content\select2\select2.js" />
     <Content Include="Content\select2\select2.min.js" />
     <Content Include="Content\signin.css" />
+    <Content Include="Content\toastr\css\toastr.min.css" />
+    <Content Include="Content\toastr\js\toastr.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1406,6 +1410,9 @@
     <Content Include="Scripts\Quetions.js" />
     <Content Include="Scripts\ReadPost.js" />
     <Content Include="Scripts\ReadQuestion.js" />
+    <Content Include="Scripts\SignIn.js" />
+    <Content Include="Scripts\SignUp.js" />
+    <Content Include="Scripts\_LayoutMain.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1431,6 +1438,8 @@
     <Content Include="Views\AskQuestion\Index.cshtml" />
     <Content Include="Views\Home\ReadQuestion.cshtml" />
     <Content Include="Views\ReadQuestion\Index.cshtml" />
+    <Content Include="Views\ReadPost\Index.cshtml" />
+    <Content Include="Views\Home\Signup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1441,7 +1450,6 @@
     <Folder Include="Areas\Post\Views\Shared\" />
     <Folder Include="Areas\Questions\Views\Shared\" />
     <Folder Include="Views\Answer\" />
-    <Folder Include="Views\ReadPost\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

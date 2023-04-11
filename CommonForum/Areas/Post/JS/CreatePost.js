@@ -27,7 +27,10 @@ function CreatePost() {
         success: function (result) {
             //debugger;
             if (result == true) {
-                $('#ddltopics').empty();
+                //$('#ddltopics').empty();
+                $("#ddltopics").val("-").change();
+                $('#txtTitle').val('');
+                CKEDITOR.instances.txtPost.setData('');
                 alert("Post Created Sucessfully!");
             }
             else {
@@ -56,6 +59,7 @@ function GetTopics() {
         success: function (result) {
             $(ddlId).empty();
             //debugger;
+            //$(ddlId).append($('<option data-RoleId = "-"/>').val("-").text("Choose topics"));
             $.each(result.data, function (i, item) {
 
                 $(ddlId).append($('<option data-RoleId = "' + item.TOPICS_ID + '"/>').val(item.TOPICS_ID).text(item.TOPIC));

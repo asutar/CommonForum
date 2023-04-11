@@ -106,23 +106,95 @@ namespace CommonForum.Controllers
 
             return View();
         }
+        public ActionResult Signup()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Login(LoginModel _loginmodel, string returnUrl)
+        //{
+        //    User _user = new User();
+        //    _user = _objDataAccessLayer.ValidateUserLogin(_loginmodel.UserName, _loginmodel.Password);
+
+        //    if (_user.FLAG == 1)
+        //    {
+        //        Session["_USER_ID"] =Convert.ToInt32(_user.USER_ID);
+        //        return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Login","Home");
+        //    }
+        //    //return View();
+        //}
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel _loginmodel, string returnUrl)
+        public JsonResult Login(LoginModel _loginmodel)
         {
             User _user = new User();
             _user = _objDataAccessLayer.ValidateUserLogin(_loginmodel.UserName, _loginmodel.Password);
 
-            if (_user.FLAG == 1)
+            //if (_user.FLAG == 1)
+            //{
+            //    Session["_USER_ID"] = Convert.ToInt32(_user.USER_ID);
+            //    RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
+            //}
+            //else
+            //{
+            //    RedirectToAction("Login", "Home");
+            //}
+
+            return Json(new { data= _user });
+        }
+        [HttpPost]
+        public JsonResult Signup(Signup _model)
+        {
+            bool Return = false;
+            bool IsRegisterUser = false;
+            Return = _objDataAccessLayer.ValidateUserEmail(_model);
+            string message = string.Empty;
+
+            switch (Return)
             {
-                Session["USER_ID"] =Convert.ToInt32(_user.USER_ID);
-                return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
+                case true:
+                    message = "Supplied email address has already been used.";
+                    break;
+                case false:
+                    IsRegisterUser=RegisterUser(_model);
+                    message = "Registration successful, please check your email to verify email id.";
+                    break;
+                default:
+                    message = "Enabled to process your request.";
+                    break;
+            }
+            ViewBag.Message = message;
+
+            return Json(new { data = IsRegisterUser });
+        }
+        public bool RegisterUser(Signup _model)
+        {
+            Guid USERID = Guid.NewGuid();
+            _model.USER_GUID = USERID;
+            Guid activationCode = Guid.NewGuid();
+            _model.ActivationCode = activationCode;
+
+            bool Return = true;
+            Return =_objDataAccessLayer.Signup(_model);
+            if (Return)
+            {
+                SendEmail(_model);
             }
             else
             {
-                return RedirectToAction("Login","Home");
+
             }
-            //return View();
+            return Return;
+        }
+        public void SendEmail(Signup _model)
+        {
+
         }
         public ActionResult Logout()
         {

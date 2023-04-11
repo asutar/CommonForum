@@ -13,6 +13,7 @@ namespace CommonForum.Areas.Post.Models
         [AllowHtml]
         public string POST { get; set; }
         public int ADDED_DATE { get; set; }
+        public int USER_ID { get; set; }
         public List<Topics> TOPICS_ID { get; set; }
     }
 }

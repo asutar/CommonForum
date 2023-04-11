@@ -10,8 +10,15 @@
 
 <div class="container mt-3">
 
-    @*<h2>Toggleable Tabs</h2>*@
-    <button type="button" onclick="GetRedirectToAddQuestion();" class="btn btn-success"><i class="fa fa-pen text-lg-end"> Ask Question</i></button>
+    <div class="row">
+        <div class="col-md-6 col-sm-10">
+            <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="search" id="example-search-input">
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <button type="button" onclick="GetRedirectToAddQuestion();" class="btn btn-primary btn-sm"><i class="fa fa-pen text-lg-end"> Ask Question</i></button>
+        </div>
+    </div>
+   
     <br>
     <div class="table-responsive">
         <table id="tblQuestions" class="table table-bordered table-striped table-hover dataTable">
@@ -31,3 +38,12 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="~/Areas/Questions/JS/Quetions.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tblQuestions_filter').hide();
+        $('#tblQuestions_length').hide();
+        $('#example-search-input').keyup(function () {
+            table.search($(this).val()).draw();
+        })
+    });
+</script>

@@ -9,9 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Signin Template · Bootstrap v5.0</title>
 
     <style>
         .bd-placeholder-img {
@@ -31,12 +28,29 @@
 
     <!-- Custom styles for this template -->
     <link href="~/Content/signin.css" rel="stylesheet" />
-    @*<link href="signin.css" rel="stylesheet">*@
+    <link href="~/Content/toastr/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body class="text-center">
 
     <main class="form-signin">
-        @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal text-center", role = "form" }))
+        @*<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">*@
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <div class="form-floating">
+            <input type="email" class="form-control" id="txtEmail" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="txtPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary"  onclick="SignIn();" type="button">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
+        @*@using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal text-center", role = "form" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -58,11 +72,13 @@
                 </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-        }
+            <p class="mt-5 mb-3 text-muted">&copy; 2022–2023</p>
+        }*@
     </main>
 
 
 </body>
 </html>
-
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="~/Content/toastr/js/toastr.min.js"></script>
+<script src="~/Scripts/SignIn.js"></script>

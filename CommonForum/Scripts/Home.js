@@ -69,11 +69,9 @@ function LoadQuestionsData() {
 
 }
 function GetPostData(SRNO) {
-    window.location.href = '/Home/PostRead?id=' + SRNO;
+    window.location.href = '/ReadPost/Index?id=' + SRNO;
 }
-function GetLogin() {
-    window.location.href = '/Home/Login';
-}
+
 function GetRedirectToQuestion() {
     window.location.href = '/AskQuestion/Index';
 }

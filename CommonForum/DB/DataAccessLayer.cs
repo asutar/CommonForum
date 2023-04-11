@@ -21,12 +21,14 @@ namespace CommonForum.DB
             object objReturn = null;
             using (SqlConnection con = new SqlConnection(CON_STRING))
             {
+                int USER_ID = Convert.ToInt32(HttpContext.Current.Session["_USER_ID"]);
                 SqlCommand cmd = con.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.CommandText = "PROC_CREATE_POST";
                 cmd.Parameters.Add("@TITLE", SqlDbType.VarChar).Value = _model.TITLE;
                 cmd.Parameters.Add("@POST", SqlDbType.VarChar).Value = _model.POST;
+                cmd.Parameters.Add("@USER_ID", SqlDbType.Int).Value = USER_ID;
 
                 DataTable dtTopics = new DataTable("TB_TOPICS");
                 dtTopics.Columns.Add("TOPICS_ID", typeof(string));
@@ -51,6 +53,7 @@ namespace CommonForum.DB
         }
         public PostDetails_Pagingation GetPostDetails(PostDetails _model)
         {
+            int USER_ID =Convert.ToInt32(HttpContext.Current.Session["_USER_ID"]);
 
             List<PostDetails> PostDetails = new List<PostDetails>();
             PostDetails_Pagingation _Pagingation = new PostDetails_Pagingation();
@@ -395,6 +398,59 @@ namespace CommonForum.DB
 
                 cmd.Parameters.Add("@RowCount", SqlDbType.Int);
                 cmd.Parameters["@RowCount"].Direction = ParameterDirection.Output;
+
+                con.Open();
+                objReturn = cmd.ExecuteScalar();
+                RowsAffected = Convert.ToBoolean(cmd.Parameters["@RowCount"].Value);
+                con.Close();
+            }
+            return RowsAffected;
+        }
+        public bool Signup(Signup model)
+        {
+            bool RowsAffected = false;
+            object objReturn = null;
+            DTOUserLoginReturnGet ReturnList = new DTOUserLoginReturnGet();
+            DataTable dt = new DataTable();
+            User _model = new User();
+            using (SqlConnection con = new SqlConnection(CON_STRING))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "PROC_REGISTER_USER";
+
+                cmd.Parameters.Add("@USER_ID", SqlDbType.UniqueIdentifier).Value = model.USER_GUID;
+                cmd.Parameters.Add("@USER_NAME", SqlDbType.VarChar).Value = model.UserName;
+                cmd.Parameters.Add("@PASSWORD", SqlDbType.VarChar).Value = model.Password;
+                cmd.Parameters.Add("@EMAIL_ID", SqlDbType.VarChar).Value = model.Email;
+                cmd.Parameters.Add("@ACTIVATION_CODE", SqlDbType.UniqueIdentifier).Value = model.ActivationCode;
+
+                cmd.Parameters.Add("@RowCount", SqlDbType.Int);
+                cmd.Parameters["@RowCount"].Direction = ParameterDirection.Output;
+
+                con.Open();
+                objReturn = cmd.ExecuteScalar();
+                RowsAffected = Convert.ToBoolean(cmd.Parameters["@RowCount"].Value);
+                con.Close();
+
+            }
+
+            return RowsAffected;
+        }
+        public bool ValidateUserEmail(Signup _model)
+        {
+            bool RowsAffected = false;
+            object objReturn = null;
+            using (SqlConnection con = new SqlConnection(CON_STRING))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.CommandText = "PROC_VALIDATE_USER_EMAIL";
+                cmd.Parameters.Add("@EMAIL_ID", SqlDbType.VarChar).Value = _model.Email;
+                cmd.Parameters.Add("@RowCount", SqlDbType.Int);
+                cmd.Parameters["@RowCount"].Direction = ParameterDirection.Output;
+
 
                 con.Open();
                 objReturn = cmd.ExecuteScalar();
