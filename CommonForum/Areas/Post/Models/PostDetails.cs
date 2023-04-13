@@ -19,6 +19,8 @@ namespace CommonForum.Areas.Post.Models
         public string SearchText { get; set; }
         public int POST_VIEW { get; set; }
         public int COMMENT_COUNT { get; set; }
+        public int USER_ID { get; set; }
+        public string TOPICS { get; set; }
     }
     public class PostDetails_Pagingation
     {

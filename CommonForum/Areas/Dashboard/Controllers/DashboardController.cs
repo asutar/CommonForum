@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommonForum.DB;
+using CommonForum.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

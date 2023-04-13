@@ -30,9 +30,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"></a>
+        <div class="row">
+            <div class="col-md-9"> <span style="color:white">Welcome : @Session["_USER_NAME"].ToString()</span></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
 
+        </div>
         <div class="navbar-nav">
-           
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" style="color: white;" href="~/Home/Logout">Sign out</a>
             </div>

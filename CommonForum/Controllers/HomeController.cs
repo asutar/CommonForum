@@ -133,18 +133,14 @@ namespace CommonForum.Controllers
         [HttpPost]
         public JsonResult Login(LoginModel _loginmodel)
         {
+            UserDetailsModel _list = new UserDetailsModel();
             User _user = new User();
-            _user = _objDataAccessLayer.ValidateUserLogin(_loginmodel.UserName, _loginmodel.Password);
 
-            //if (_user.FLAG == 1)
-            //{
-            //    Session["_USER_ID"] = Convert.ToInt32(_user.USER_ID);
-            //    RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
-            //}
-            //else
-            //{
-            //    RedirectToAction("Login", "Home");
-            //}
+            _user = _objDataAccessLayer.ValidateUserLogin(_loginmodel.UserName, _loginmodel.Password);
+            Session["_USER_ID"] = Convert.ToInt32(_user.USER_ID);
+            Session["_USER_NAME"] = Convert.ToString(_user.USER_NAME);
+            Session["_EMAIL_ID"] = Convert.ToString(_user.EMAIL_ID);
+
 
             return Json(new { data= _user });
         }

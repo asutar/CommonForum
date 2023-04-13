@@ -68,6 +68,7 @@ namespace CommonForum.DB
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "PROC_GET_POST_DETAILS";
 
+                cmd.Parameters.Add("@USER_ID", SqlDbType.Int).Value = USER_ID;
                 cmd.Parameters.Add("@SRNO", SqlDbType.Int).Value = _model.SRNO;
                 cmd.Parameters.Add("@SORTCOLUMN", SqlDbType.VarChar).Value = _model.SortColumn == null ? "" : _model.SortColumn;
                 cmd.Parameters.Add("@SORTORDER", SqlDbType.VarChar).Value = _model.SortOrder == null ? "" : _model.SortOrder;
@@ -91,6 +92,7 @@ namespace CommonForum.DB
                             ADDED_BY = Convert.ToString(dr["ADDED_BY"]),
                             POST_VIEW = Convert.ToInt32(dr["POST_VIEW"]),
                             COMMENT_COUNT = Convert.ToInt32(dr["COMMENT_COUNT"]),
+                            TOPICS = Convert.ToString(dr["TOPICS"]),
                         });
                     }
                 }
@@ -214,6 +216,7 @@ namespace CommonForum.DB
                         _model.EMAIL_ID = Convert.ToString(dr["EMAIL_ID"].ToString());
                         _model.USER_ID = Convert.ToInt32(dr["USER_ID"]);
                         _model.FLAG = Convert.ToInt32(dr["Flag"].ToString());
+                        _model.USER_NAME = Convert.ToString(dr["USER_NAME"].ToString());
                     }
                 }
 
@@ -225,12 +228,14 @@ namespace CommonForum.DB
         {
             bool RowsAffected = false;
             object objReturn = null;
+            int USER_ID = Convert.ToInt32(HttpContext.Current.Session["_USER_ID"]);
             using (SqlConnection con = new SqlConnection(CON_STRING))
             {
                 SqlCommand cmd = con.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.CommandText = "PROC_ADD_QUESTION";
+                cmd.Parameters.Add("@USER_ID", SqlDbType.Int).Value = USER_ID;
                 cmd.Parameters.Add("@TITLE", SqlDbType.VarChar).Value = _model.TITLE;
                 cmd.Parameters.Add("@STOPPER_DETAILS", SqlDbType.VarChar).Value = _model.STOPPER_DETAILS;
                 cmd.Parameters.Add("@ADDED_BY", SqlDbType.VarChar).Value = _model.ADDED_BY;
@@ -258,7 +263,7 @@ namespace CommonForum.DB
         }
         public QuestionDetails_Pagingation GeQuestionDetails(QuestionDetails _model)
         {
-
+            int USER_ID = Convert.ToInt32(HttpContext.Current.Session["_USER_ID"]);
             List<QuestionDetails> PostDetails = new List<QuestionDetails>();
             QuestionDetails_Pagingation _Pagingation = new QuestionDetails_Pagingation();
             int TotalRecord = 0;
@@ -272,6 +277,7 @@ namespace CommonForum.DB
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "PROC_GET_QUESTIONDETAILS";
 
+                cmd.Parameters.Add("@USER_ID", SqlDbType.Int).Value = USER_ID;
                 cmd.Parameters.Add("@ASKED_QUESTIONS_ID", SqlDbType.Int).Value = _model.ASKED_QUESTIONS_ID;
                 cmd.Parameters.Add("@SORTCOLUMN", SqlDbType.VarChar).Value = _model.SortColumn == null ? "" : _model.SortColumn;
                 cmd.Parameters.Add("@SORTORDER", SqlDbType.VarChar).Value = _model.SortOrder == null ? "" : _model.SortOrder;
@@ -295,6 +301,7 @@ namespace CommonForum.DB
                             ADDED_BY = Convert.ToString(dr["ADDED_BY"]),
                             POST_VIEW = Convert.ToInt32(dr["POST_VIEW"]),
                             ANSWER_COUNT = Convert.ToInt32(dr["ANSWER_COUNT"]),
+                            TOPICS = Convert.ToString(dr["TOPICS"]),
                         });
                     }
                 }
@@ -459,5 +466,6 @@ namespace CommonForum.DB
             }
             return RowsAffected;
         }
+       
     }
 }
