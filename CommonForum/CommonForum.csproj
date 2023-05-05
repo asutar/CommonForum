@@ -297,6 +297,7 @@
     <Content Include="Content\signin.css" />
     <Content Include="Content\toastr\css\toastr.min.css" />
     <Content Include="Content\toastr\js\toastr.min.js" />
+    <Content Include="DatabaseScript\CommonForum_DB_Script.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
